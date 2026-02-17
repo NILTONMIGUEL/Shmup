@@ -112,8 +112,9 @@ meu_escudo = noone;
 	}
 	
 	perde_vida = function(){
+		if(timer_vida > 0) return ;
 		
-		if(vidas > 0 and timer_vida <= 0){
+		if(vidas > 0){
 			vidas--;
 			
 			timer_vida = timer_dano;
@@ -128,6 +129,8 @@ meu_escudo = noone;
 			
 			meu_escudo = instance_create_layer(x, y,"inst_escudos",obj_escudo);
 			escudos--;
+			
+			timer_vida = 10;
 			
 		}
 	}
