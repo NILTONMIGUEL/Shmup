@@ -14,7 +14,13 @@ level_do_tiro = 1;
 
 vidas = 3;
 
+timer_dano = game_get_speed(gamespeed_fps);
+timer_vida = 0;
+
+
 escudos = 3;
+
+meu_escudo = noone;
 
 #endregion
 
@@ -23,6 +29,7 @@ escudos = 3;
 
 	function controlarPlayer(){
 	
+		timer_vida--;
 		var _cima,_baixo,_esquerda,_direita,_atirar;
 	
 		_cima = keyboard_check(ord("W")) or keyboard_check(vk_up);
@@ -80,7 +87,7 @@ escudos = 3;
 		tiro_1();
 		tiro_2();
  	}
- 	
+  	
 	
 	function aumentandoLevelDoTiro(){
 		
@@ -102,16 +109,64 @@ escudos = 3;
 			_espaco += 25;
 		}
 		
-	}	
+	}
+	
+	perde_vida = function(){
+		
+		if(vidas > 0 and timer_vida <= 0){
+			vidas--;
+			
+			timer_vida = timer_dano;
+		}
+		else if(vidas <= 0){
+			instance_destroy();	
+		}
+	}
+	
+	usar_escudo = function(){
+		if(escudos > 0 and meu_escudo == noone){
+			
+			meu_escudo = instance_create_layer(x, y,"inst_escudos",obj_escudo);
+			escudos--;
+			
+		}
+	}
+	
+	escudo_player = function(){
+		if(instance_exists(meu_escudo)){
+			meu_escudo.x = x;
+			meu_escudo.y = y;
+		}
+		else{
+			meu_escudo = noone;	
+		}
+	}
+	
+	
+	
+	
+	
      	
 #endregion
 
 
 #region debugs
-function debug(){
+	function debug(){
 	
 		if(keyboard_check_pressed(vk_tab)){
 			global.debug = !global.debug;
 		}	
 	}
+	
+	perder_vida = function(){
+		if(keyboard_check_pressed(vk_enter)){
+			perde_vida();
+		}	
+	}
+	
+	usando_escudo = function(){
+		if(keyboard_check_pressed(ord("E"))){
+			usar_escudo();	
+		}
+	}	
 #endregion

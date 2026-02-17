@@ -1,9 +1,5 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+instance_destroy();
 
-controlarPlayer();
-perder_vida();
-usando_escudo();
-escudo_player();
-debug(); 

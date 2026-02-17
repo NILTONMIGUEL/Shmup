@@ -2,8 +2,4 @@
 // Você pode escrever seu código neste editor
 
 
-controlarPlayer();
-perder_vida();
-usando_escudo();
-escudo_player();
-debug(); 
+image_speed = -0.5;
