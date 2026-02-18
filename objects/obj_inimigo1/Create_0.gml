@@ -3,6 +3,9 @@
 
 vida = 1;
 
+criado_em_seq = in_sequence;
+
+
 alarm[0] = game_get_speed(gamespeed_fps) * random(2);
 
 
@@ -16,15 +19,25 @@ alarm[0] = game_get_speed(gamespeed_fps) * random(2);
 	}
 
 	morrendo = function(_part){
-	
+		
+		vida--;
 		var _chance = random(100);
-		instance_destroy();
-		instance_create_layer(x, y, "inst_particulas", _part);
+		if(vida <= 0){
+
+			instance_destroy();
+			instance_create_layer(x, y, "inst_particulas", _part)
+		}
 		
 		if(_chance >= 90){
 			instance_create_layer(x, y, layer , obj_powerUps);	
 		}
 		
+	}
+	
+	destruindo_inimigo_seq = function(){
+		if(criado_em_seq and !in_sequence){
+			instance_destroy();	
+		}
 	}
 
 #endregion
