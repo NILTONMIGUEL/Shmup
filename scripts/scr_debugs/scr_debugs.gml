@@ -8,3 +8,19 @@ function destruindo(_part){
 	
 	instance_create_layer(x, y , "inst_particulas", _part);
 }
+
+
+
+
+function screenShake(_treme){
+	
+	if(!instance_exists(obj_screenshake)) exit ;
+	
+	with(obj_screenshake){
+		if(_treme > treme){
+			
+			treme = _treme;
+		}
+	}
+	
+}

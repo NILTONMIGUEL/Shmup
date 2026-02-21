@@ -112,14 +112,17 @@ meu_escudo = noone;
 	}
 	
 	perde_vida = function(){
+		
 		if(timer_vida > 0) return ;
 		
 		if(vidas > 0){
 			vidas--;
+			screenShake(11);
 			
 			timer_vida = timer_dano;
 		}
 		else if(vidas <= 0){
+			screenShake(30);
 			instance_destroy();	
 		}
 	}

@@ -1,6 +1,9 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
-morrendo(obj_explosaoInimigo);
-screenShake(2);
-instance_destroy(other);
+
+draw_self();
+
+if(global.debug){
+	draw_text(x, y + 20, estadoAtual);
+}

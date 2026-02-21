@@ -21,10 +21,12 @@ alarm[0] = game_get_speed(gamespeed_fps) * random(2);
 	morrendo = function(_part){
 		
 		vida--;
+		
 		var _chance = random(100);
 		if(vida <= 0){
 
 			instance_destroy();
+			screenShake(15);
 			instance_create_layer(x, y, "inst_particulas", _part)
 		}
 		
