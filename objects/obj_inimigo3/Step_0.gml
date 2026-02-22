@@ -8,4 +8,5 @@
 //event_inherited();
 
 estado();
-
+resetandoEfeitoMola(0.1);
+restandoShader();

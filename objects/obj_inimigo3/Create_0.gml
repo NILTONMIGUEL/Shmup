@@ -9,16 +9,23 @@ timer_atual = 0;
 contador = 0;
 escolher_direcao = false;
 
+
+criarEfeitoMola();
+iniciandoShader();
+
 morrendo = function(_part){
 	if(vida > 0){
 		vida--;	
-		
+		usandoEfeitoMola(1.2,0.5);
+		danoShader(1.3);
 	}
 	else{
 		
 		var _chance = random(100);
 		
 		instance_destroy();
+		audio_stop_sound(snd_explosaoInimigo);
+		audio_play_sound(snd_explosaoInimigo,0,0);
 		screenShake(20);
 		instance_create_layer(x, y, "inst_particulas", _part)
 		
@@ -68,6 +75,8 @@ estado = function(){
 				_tiro.speed = 2;
 				_tiro.direction = _dir;
 				_tiro.image_angle = _dir + 90;
+				
+				efeitoTiro(snd_tiroInimigo , 0.8);
 			}
 			if(contador < 3){
 				estadoAtual = "carregando";
@@ -84,6 +93,8 @@ estado = function(){
 				_tiro2.speed = 4;
  				_tiro2.direction = _direcao;
 				_direcao += 15;
+				
+				efeitoTiro(snd_tiroInimigo , 0.5);
 			}
 			
 			if(contador < 3){

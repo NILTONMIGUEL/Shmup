@@ -16,6 +16,8 @@ alarm[0] = game_get_speed(gamespeed_fps) * random(2);
 		var _velTiro = 3;
 
 		_tiro.vspeed = _velTiro;	
+		
+		efeitoTiro(snd_tiroInimigo , 0.4);
 	}
 
 	morrendo = function(_part){
@@ -26,6 +28,8 @@ alarm[0] = game_get_speed(gamespeed_fps) * random(2);
 		if(vida <= 0){
 
 			instance_destroy();
+			audio_stop_sound(snd_explosaoInimigo);
+			audio_play_sound(snd_explosaoInimigo,0,0,,,0.5);
 			screenShake(15);
 			instance_create_layer(x, y, "inst_particulas", _part)
 		}

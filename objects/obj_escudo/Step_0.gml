@@ -3,7 +3,6 @@
 
 if(image_index <= 0.5 and image_speed <= 0){
 	instance_destroy();
-	
-	
+
 }
 

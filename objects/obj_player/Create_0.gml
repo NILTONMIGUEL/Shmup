@@ -4,9 +4,13 @@
 #region variaveis do game
 //criando função método de movimentação do player
 
+audio_stop_all();
+audio_play_sound(snd_musica01,0,1);
+
+
 velocidade = 2;
 
-espera_tiro = 10;
+espera_tiro = 8;
 
 timer_tiro = 0;
 
@@ -17,10 +21,13 @@ vidas = 3;
 timer_dano = game_get_speed(gamespeed_fps);
 timer_vida = 0;
 
+criarEfeitoMola();
 
 escudos = 3;
 
 meu_escudo = noone;
+
+ iniciandoShader();
 
 #endregion
 
@@ -55,6 +62,10 @@ meu_escudo = noone;
 	
 		if(_atirar and timer_tiro <= 0){
 
+			efeitoTiro(snd_tiro, 0.2);
+			usandoEfeitoMola(1.5, 1.5);
+			
+
 			if(level_do_tiro == 1){
 				tiro_1();	
 			}
@@ -72,15 +83,15 @@ meu_escudo = noone;
 	function tiro_1(){
 		
 		var _tiro = instance_create_layer(x,y,"inst_tiro",obj_tiro_player);	
-		_tiro.vspeed = -10;
+
 	}
 	
 	function tiro_2(){
 		var _tiro1 = instance_create_layer(x-15,y,"inst_tiro",obj_tiro_player);
-		_tiro1.vspeed = -10;
+		
 		
 		_tiro1 = instance_create_layer(x+15,y,"inst_tiro",obj_tiro_player);
-		_tiro1.vspeed = -10;
+		
 	}
 	
 	function tiro_3(){
@@ -118,11 +129,15 @@ meu_escudo = noone;
 		if(vidas > 0){
 			vidas--;
 			screenShake(11);
+			danoShader(5);
+			usandoEfeitoMola(1.3,1.3);
 			
 			timer_vida = timer_dano;
 		}
 		else if(vidas <= 0){
 			screenShake(30);
+			instance_create_layer(x,y , "inst_particulas",obj_explosaoPlayer);
+			efeitoTiro(snd_explosaoInimigo , 0);
 			instance_destroy();	
 		}
 	}
@@ -132,7 +147,7 @@ meu_escudo = noone;
 			
 			meu_escudo = instance_create_layer(x, y,"inst_escudos",obj_escudo);
 			escudos--;
-			
+			efeitoTiro(snd_childCreate , 0);
 			timer_vida = 10;
 			
 		}

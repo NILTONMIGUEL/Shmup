@@ -3,6 +3,8 @@
 
 morrendo(obj_explosaoInimigo);
 screenShake(2);
+
+
 other.perde_vida();
 
 

@@ -1,4 +1,5 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
-destruindo(obj_particulaTiro)
+destruindo(obj_particulaTiro);
+
 other.perde_vida();
